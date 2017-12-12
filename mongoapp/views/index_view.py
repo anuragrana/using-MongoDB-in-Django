@@ -1,4 +1,4 @@
-from mongoapp.models import PollModel, ChoiceModel
+from mongoapp.models import PollModel, ChoiceModel, DynamicPageModel
 import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
@@ -8,8 +8,6 @@ import logging
 
 def index(request):
     data = {}
-    p = PollModel.objects.all()
-    data["polls"] = p
     return render(request,"mongoapp/index.html",data)
 
 
@@ -35,9 +33,18 @@ def show(request):
     data = {}
     p = PollModel.objects.all()
     data["polls"] = p
+    data["dynamic_pages"] = DynamicPageModel.objects.all()
     return render(request, "mongoapp/show.html", data)
 
 
 def delete(request, document_id):
     PollModel.objects.filter(id=document_id).delete()
+    return HttpResponseRedirect(reverse("mongoapp:show"))
+
+
+def create_dynamic(request):
+    dynamic_page = DynamicPageModel(title="this is sample title")
+    dynamic_page.category = "category1"
+    dynamic_page.tags = ["tag1", "tag2"]
+    dynamic_page.save()
     return HttpResponseRedirect(reverse("mongoapp:show"))

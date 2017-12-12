@@ -11,3 +11,7 @@ class PollModel(Document):
     question = StringField(max_length=200)
     pub_date = DateTimeField(help_text='date published')
     choices = ListField(EmbeddedDocumentField(ChoiceModel))
+
+
+class DynamicPageModel(DynamicDocument):
+    title = StringField(max_length=150, required=True)

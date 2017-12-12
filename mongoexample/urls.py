@@ -15,21 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls import include
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-]
-
-from django.conf.urls import include
-from django.conf.urls import handler404, handler500
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-#handler404 = views.error_404
-#handler500 = views.error_500
-
-urlpatterns += [
     url(r'^mongoapp/', include('mongoapp.urls', namespace='mongoapp')),
 ]

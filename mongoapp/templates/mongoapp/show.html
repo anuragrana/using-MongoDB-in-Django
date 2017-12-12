@@ -9,3 +9,14 @@ Options:<br>
 <a href="{% url "mongoapp:delete" poll.id %}">Delete</a>
 <hr>
 {% endfor %}
+<hr>
+<hr>
+
+{% for page in dynamic_pages %}
+Document ID: {{page.id}} <br>
+Title:  {{page.title}} <br>
+Category: {{page.category}} <br>
+Tags: {{page.tags}}
+
+<hr>
+{% endfor %}
