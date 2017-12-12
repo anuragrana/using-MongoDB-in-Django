@@ -1,0 +1,7 @@
+./logs
+./static
+./media
+**/*.pyc
+**/migrations/*
+mongoexample/settings_prod.py
+mongoexample/this_is_dev_env

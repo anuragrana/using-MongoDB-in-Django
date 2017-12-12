@@ -1,0 +1,11 @@
+{% for poll in polls%}
+Document ID: {{poll.id}} <br>
+Question:  {{poll.question}} <br>
+Published Date: {{poll.pub_date}} <br>
+Options:<br>
+    {% for choice in poll.choices %}
+    {{choice.choice_text}} : {{choice.votes}} <br>
+    {% endfor %}
+<a href="{% url "mongoapp:delete" poll.id %}">Delete</a>
+<hr>
+{% endfor %}
